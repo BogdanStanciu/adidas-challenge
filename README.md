@@ -40,7 +40,8 @@ The goal of the project is to develop a **subscription system** composed of 3 mi
 
 - **Node.js** given by requirements.
 
-- **Redis** is an open source, in-memory data structure store, used as a database, cache, and message broker. It provide. Provides low latency and high reliability, with the ability to persist data and create clusters of multiple instances.
+- **Redis** is an open source, in-memory data structure store, used as a database, cache, and message broker
+  Provides low latency and high reliability, with the ability to persist data and create clusters of multiple instances.
 
 - **PostgreSQL** is a relational database with high performance and a great community support. It is designed to handle a range of workloads, from single machines to data warehouses or Web services with many concurrent users.
 
@@ -70,10 +71,14 @@ is implemented a queue through redis that brings countless advantages, such as:
 
 Because it is Redis-backed, the queue architecture can be completely distributed and platform-independent.
 
+It was thought about using kafka for message queue management, but Kafka transporter is experimental in the NestJS framework, so we opted for a more ecosystem-tested solution.
+
+For communication between private and public networks, the use of REST api was chosen to facilitate the management of authentication and accessibility, due to the fact for easy management and implementation.
+
 ### Considerations
 
 To maintain a certain degree of simplicity, the authentication between public and subscription services
-is made with an constant token configurable from environment variables. For future implementations it can be used `passportjs` for more complete authentication control.
+is made with a costant token, configurable from environment variables. For future implementations it can be used `passportjs` for more complete authentication control.
 
 In case of loss of connection to redis, typeorm does not bypass the cache to reach the database directly:[cache issue].
 
@@ -86,64 +91,64 @@ In case of loss of connection to redis, typeorm does not bypass the cache to rea
 ./
 ├── .env
 ├── .git
-│   ├── COMMIT_EDITMSG
-│   ├── HEAD
-│   ├── config
-│   ├── description
-│   ├── hooks
-│   ├── index
-│   ├── info
-│   ├── logs
-│   ├── objects
-│   ├── packed-refs
-│   └── refs
+│ ├── COMMIT_EDITMSG
+│ ├── HEAD
+│ ├── config
+│ ├── description
+│ ├── hooks
+│ ├── index
+│ ├── info
+│ ├── logs
+│ ├── objects
+│ ├── packed-refs
+│ └── refs
 ├── .gitignore
 ├── README.md
 ├── build.sh
 ├── docker-compose.yml
 ├── email
-│   ├── .env
-│   ├── .eslintrc.js
-│   ├── .prettierrc
-│   ├── Dockerfile
-│   ├── README.md
-│   ├── dist
-│   ├── nest-cli.json
-│   ├── node_modules
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── src
-│   ├── test
-│   ├── tsconfig.build.json
-│   └── tsconfig.json
+│ ├── .env
+│ ├── .eslintrc.js
+│ ├── .prettierrc
+│ ├── Dockerfile
+│ ├── README.md
+│ ├── dist
+│ ├── nest-cli.json
+│ ├── node_modules
+│ ├── package-lock.json
+│ ├── package.json
+│ ├── src
+│ ├── test
+│ ├── tsconfig.build.json
+│ └── tsconfig.json
 ├── img.png
 ├── public
-│   ├── .env
-│   ├── .eslintrc.js
-│   ├── .prettierrc
-│   ├── Dockerfile
-│   ├── README.md
-│   ├── nest-cli.json
-│   ├── package-lock.json
-│   ├── package.json
-│   ├── src
-│   ├── test
-│   ├── tsconfig.build.json
-│   └── tsconfig.json
+│ ├── .env
+│ ├── .eslintrc.js
+│ ├── .prettierrc
+│ ├── Dockerfile
+│ ├── README.md
+│ ├── nest-cli.json
+│ ├── package-lock.json
+│ ├── package.json
+│ ├── src
+│ ├── test
+│ ├── tsconfig.build.json
+│ └── tsconfig.json
 └── subscription
-    ├── .env
-    ├── .eslintrc.js
-    ├── .prettierrc
-    ├── Dockerfile
-    ├── README.md
-    ├── dump.rdb
-    ├── nest-cli.json
-    ├── node_modules
-    ├── package-lock.json
-    ├── package.json
-    ├── src
-    ├── tsconfig.build.json
-    └── tsconfig.json
+├── .env
+├── .eslintrc.js
+├── .prettierrc
+├── Dockerfile
+├── README.md
+├── dump.rdb
+├── nest-cli.json
+├── node_modules
+├── package-lock.json
+├── package.json
+├── src
+├── tsconfig.build.json
+└── tsconfig.json
 
 ## Build
 
@@ -162,11 +167,11 @@ From the root project, run `jest`, this will perform unit test.
 
 ## Swagger
 
-Swagger is used for documenting the API, it's used subscription services.
+Swagger is used for documenting the subscription API.
 
 ## Local Run
 
-To start each microservices in local, you must have redis installed on the host, up and running.
+To start each microservices in local, you must have installed redis on the host, up and running.
 In each microservices do the following steps:
 
 - npm install
@@ -190,7 +195,7 @@ A possibile CI/CD made in Jenkins could have 5 stage:
 - Docker: dockerize the application.
 - Deploy: deploy on K8.
 
-A possibile JenJenkinsfile could be
+A possibile Jenkinsfile could be
 
 ```
 pipeline {
