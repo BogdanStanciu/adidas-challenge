@@ -57,13 +57,12 @@ It also provides an integrated cache system based on redis, useful for avoiding 
 
 ![Arch](/img.png)
 
-A simple architecture has been chosen, but which at the same time gives the possibility to scale according to needs. The **public** service acts as an interface between the client and the various services inside a private network, providing api to the client.
+A simple architecture has been chosen, which at the same time gives the possibility to scale according to needs. The **public** service acts as an interface between the client and the various services inside a private network, providing api to the client.
 Inside the private network it can been find the **subscription** service and the **email** service.
 The subscription service is responsible for managing subscriptions, and has it's own database.
 Provides REST api to access the services, with the right credentials.
 
-The email service is responsible for the emails to been sent. Between subscription and email is
-is implemented a queue through redis that brings countless advantages, such as:
+The email service is responsible for the emails to been sent. Between subscription and email is implemented a queue through redis that brings countless advantages, such as:
 
 - Smoothing out processing peaks.
 - Handle traffic peaks.
@@ -72,7 +71,7 @@ is implemented a queue through redis that brings countless advantages, such as:
 
 Because it is Redis-backed, the queue architecture can be completely distributed and platform-independent.
 
-It was thought about using kafka for message queue management, but Kafka transporter is experimental in the NestJS framework, so i opted for a more ecosystem-tested solution.
+Kafka was taken in consideration for message queue management, but Kafka transporter is experimental in the NestJS framework, so i opted for a more ecosystem-tested solution.
 
 For communication between private and public networks, the use of REST api was chosen to facilitate the management of authentication and accessibility, due to the fact for easy management and implementation.
 
