@@ -24,13 +24,6 @@ const mockSubscriptionRepository = mock<Repository<Subscription>>();
 mockSubscriptionRepository.save.mockReturnThis();
 mockSubscriptionRepository.createQueryBuilder.mockReturnValue(qbmock);
 
-// export const mockSubscriptionRepository = {
-//   save: jest.fn(),
-//   getOne: jest.fn(),
-//   getMany: jest.fn(),
-//   createQueryBuilder: jest.fn().mockReturnValue(qbmock),
-// };
-
 const mockEmailQueue = {
   add: jest.fn(),
 };
@@ -144,6 +137,7 @@ describe('SubscriptionService', () => {
     newSubscriptionEntity.id = 1697;
     Object.assign(newSubscriptionEntity, subscriptionDto);
 
+    // throw a error on mocked method save, searching for default connection (?)
     // it('save new subscription', async () => {
     //   mockSubscriptionRepository.save.mockImplementation();
     //   mockSubscriptionRepository.save.mockResolvedValue(newSubscriptionEntity);

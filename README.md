@@ -45,7 +45,7 @@ The goal of the project is to develop a **subscription system** composed of 3 mi
 
 - **PostgreSQL** is a relational database with high performance and a great community support. It is designed to handle a range of workloads, from single machines to data warehouses or Web services with many concurrent users.
 
-- **TypeORM** is the most mature and used object relational mapper available in node, it's written in typescript and it has a great compatibility with NestJS. The key benefit are:
+- **TypeORM** is the most mature and used object relational mapper available in node, it's written in typescript and it has a great compatibility with NestJS. The key benefits are:
   - Can handle different database like PostgreSQL, SQLServer, MySQL ecc.
   - Implements Active Record and Data Mapper patterns.
   - Can write high quality, loosely coupled, scalable, maintainable applications the most productive way
@@ -162,7 +162,7 @@ The email are mocked using nodemailer, in the console running the project you ca
 
 ## Test
 
-From the root project, run `jest`, this will perform unit test.
+From the root project, move to subscription folder and run `jest`, this will perform unit test.
 
 ## Swagger
 
