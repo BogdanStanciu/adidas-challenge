@@ -1,0 +1,118 @@
+version: "3.5"
+services:
+  subscription:
+    image: subscription:latest
+    restart: always
+    depends_on:
+      - cache
+      - database
+    environment:
+      TOKEN: ${SUBSCRIPTION_TOKEN}
+      APP_PORT: ${SUBSCRIPTION_APP_PORT}
+      EMAIL_SERVICE_TOKEN: ${EMAIL_TOKEN}
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      CACHE_TIME: ${CACHE_TIME}
+      DB_CONNECTION: ${DB_CONNECTION}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_LOGGING: ${DB_LOGGING}
+
+    networks:
+      subscription_network:
+        aliases:
+          - subscription-service
+      cache_network:
+        aliases:
+          - subscription-service
+      pg_network:
+        aliases:
+          - subscription-service
+
+  email:
+    image: email:latest
+    restart: always
+    depends_on:
+      - cache
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      TOKEN: ${EMAIL_TOKEN}
+
+    networks:
+      cache_network:
+        aliases:
+          - email-service
+
+  public:
+    image: public:latest
+    restart: always
+    depends_on:
+      - subscription
+    environment:
+      APP_PORT: ${PUBLIC_APP_PORT}
+      SUBSCRIPTION_TOKEN: ${SUBSCRIPTION_TOKEN}
+      SUBSCRIPTION_URL: ${SUBSCRIPTION_URL}
+    ports:
+      - "${PUBLIC_APP_PORT}:${PUBLIC_APP_PORT}"
+
+    networks:
+      subscription_network:
+        aliases:
+          - public-service
+
+  cache:
+    image: redis
+    restart: always
+    command:
+      - redis-server
+    networks:
+      cache_network:
+        aliases:
+          - redis-cache
+    # expose:
+    #   - "6379"
+
+  database:
+    restart: always
+    image: postgres:11
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: "/var/lib/postgresql/data"
+
+    volumes:
+      - pg-volume:/var/lib/postgresql/data
+
+    networks:
+      pg_network:
+        aliases:
+          - pg-network
+
+volumes:
+  pg-volume:
+
+networks:
+  pg_network:
+    external: false
+    name: pg-network
+
+  cache_network:
+    external: false
+    name: cache-network
+
+  email_network:
+    external: false
+    name: email-network
+
+  subscription_network:
+    external: false
+    name: subscription-network
+
+  public_network:
+    external: false
+    name: public-network
