@@ -86,68 +86,73 @@ In case of loss of connection to redis, typeorm does not bypass the cache to rea
 [cache issue]: https://github.com/typeorm/typeorm/issues/926
 
 ## Folder Structure
-
+```
 ./
 ├── .env
 ├── .git
-│ ├── COMMIT_EDITMSG
-│ ├── HEAD
-│ ├── config
-│ ├── description
-│ ├── hooks
-│ ├── index
-│ ├── info
-│ ├── logs
-│ ├── objects
-│ ├── packed-refs
-│ └── refs
+│   ├── COMMIT_EDITMSG
+│   ├── FETCH_HEAD
+│   ├── HEAD
+│   ├── ORIG_HEAD
+│   ├── config
+│   ├── description
+│   ├── hooks
+│   ├── index
+│   ├── info
+│   ├── logs
+│   ├── objects
+│   ├── packed-refs
+│   └── refs
 ├── .gitignore
 ├── README.md
 ├── build.sh
 ├── docker-compose.yml
 ├── email
-│ ├── .env
-│ ├── .eslintrc.js
-│ ├── .prettierrc
-│ ├── Dockerfile
-│ ├── README.md
-│ ├── dist
-│ ├── nest-cli.json
-│ ├── node_modules
-│ ├── package-lock.json
-│ ├── package.json
-│ ├── src
-│ ├── test
-│ ├── tsconfig.build.json
-│ └── tsconfig.json
+│   ├── .env
+│   ├── .eslintrc.js
+│   ├── .prettierrc
+│   ├── Dockerfile
+│   ├── README.md
+│   ├── dist
+│   ├── nest-cli.json
+│   ├── node_modules
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── src
+│   ├── test
+│   ├── tsconfig.build.json
+│   └── tsconfig.json
 ├── img.png
 ├── public
-│ ├── .env
-│ ├── .eslintrc.js
-│ ├── .prettierrc
-│ ├── Dockerfile
-│ ├── README.md
-│ ├── nest-cli.json
-│ ├── package-lock.json
-│ ├── package.json
-│ ├── src
-│ ├── test
-│ ├── tsconfig.build.json
-│ └── tsconfig.json
+│   ├── .env
+│   ├── .eslintrc.js
+│   ├── .prettierrc
+│   ├── Dockerfile
+│   ├── README.md
+│   ├── nest-cli.json
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── src
+│   ├── test
+│   ├── tsconfig.build.json
+│   └── tsconfig.json
 └── subscription
-├── .env
-├── .eslintrc.js
-├── .prettierrc
-├── Dockerfile
-├── README.md
-├── dump.rdb
-├── nest-cli.json
-├── node_modules
-├── package-lock.json
-├── package.json
-├── src
-├── tsconfig.build.json
-└── tsconfig.json
+    ├── .env
+    ├── .eslintrc.js
+    ├── .prettierrc
+    ├── Dockerfile
+    ├── README.md
+    ├── dump.rdb
+    ├── nest-cli.json
+    ├── node_modules
+    ├── package-lock.json
+    ├── package.json
+    ├── src
+    ├── tsconfig.build.json
+    └── tsconfig.json
+```
+
+
 
 ## Build
 
