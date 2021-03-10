@@ -82,8 +82,6 @@ is made with a costant token, configurable from environment variables. For futur
 
 In case of loss of connection to redis, typeorm does not bypass the cache to reach the database directly:[cache issue].
 
-<!-- due to a problem of mock of the typeorm repository it was not possible to mock the save method -->
-
 [cache issue]: https://github.com/typeorm/typeorm/issues/926
 
 ## Folder Structure
