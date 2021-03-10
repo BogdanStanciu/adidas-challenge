@@ -60,6 +60,7 @@ It also provides an integrated cache system based on redis, useful for avoiding 
 A simple architecture has been chosen, but which at the same time gives the possibility to scale according to needs. The **public** service acts as an interface between the client and the various services inside a private network, providing api to the client.
 Inside the private network we can find the **subscription** service and the **email** service.
 The subscription service is responsible for managing subscriptions, and has it's own database.
+Provides REST api to access the services, with the right credentials.
 
 The email service is responsible for the emails to been sent. Between subscription and email is
 is implemented a queue through redis that brings countless advantages, such as:
